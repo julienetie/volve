@@ -3,41 +3,40 @@ Tiny, Performant Debounce and Throttle Functions.
 
 - `npm i --save volve`
 
-### Usage:
+### Debounce:
+`volve.debounce(<callback>,<delay>)'
 ```javascript
 import { debounce } from 'volve'
 
-const helloWorld = (e) => {console.log('Hello World!', e.target)}
-const debounceHelloWorld = debounce(helloWorld, 1000)
+const helloWorld = (e) => {console.log('Hello World Debounced!', e.target)}
+const debounceHelloWorld = debounce(helloWorld, 1000)  // Can only click 1 second after your last click.
 
-document.body.addEventListener('click',debounceHelloWorld, false); 
+document.body.addEventListener('click',debounceHelloWorld, false)
 // Hello World! <div id="some-element-you-clicked"></div>
 
 ```
-- **Callback** : The function to be executed between each delay.
+### Throttle:
+`volve.throttle(<callback>,<limit>)'
+```javascript
+import { throttle } from 'volve'
 
-- **delay** : The delay in milliseconds or frames per second if useFPS is truthy.
+const helloWorld = (e) => {console.log('Hello World Throttled!', e.target)}
+const throttleHelloWorld = throttle(helloWorld, 1000) // Can only click once in every second.
 
-- **useFPS** : If true, the delay value is interpreted by FPS. It is false by defualt.
+document.body.addEventListener('click',throttleHelloWorld, false)
+// Hello World! <div id="some-element-you-clicked"></div>
 
+```
+In the two examples above debounce will make the user wait 1000ms until they can trigger a future call.
+Throttle will only allow the user trigger a call once within every 1000ms period.
 
-- _setAnimationInterval_ returns the requestID for cancellation via cancelRequestAnimationFrame() ([polyfill](https://github.com/julienetie/request-frame)).
-- _setAnimationInterval_ passes the given function the [DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) as a parameter.
+### Why use these functions?
+- Volve **dosen't use setTimeout or setInterval** which means that they can be more "performant".
+- Volve's debounce is trailing edge. (Leading edge senarios for debounce are usually edge case). 
+- Supports IE8+
 
-
-## Why avoid setInterval?
-
-Checkout [requestAnimationFrame for Smart Animating](https://www.paulirish.com/2011/requestanimationframe-for-smart-animating/) 
-By Paul Irish
-______
-
-#### Browser support using the [requestFrame](https://github.com/julienetie/request-frame) polyfill. ```npm i --save request-frame```
-- IE 5.5+
-
-#### Browser Support Without a  polyfill or vendor prefix usage.
-- IE10+
-
-See [caniuse](http://caniuse.com/#feat=requestanimationframe) for more details.
+### The Performant Timing Functions collection
+Checkout [4d](https://github.com/envidia/4d) which features volve.
 
 MIT License
 
