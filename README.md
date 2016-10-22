@@ -8,10 +8,10 @@ Tiny, Performant Debounce and Throttle Functions.
 import { debounce } from 'volve'
 
 const helloWorld = (e) => {console.log('Hello World!', e.target)}
+const debounceHelloWorld = debounce(helloWorld, 1000)
 
-let debounceHelloWorld = debounce(helloWorld, 1000)
-
-document.body.addEventListener(debounceHelloWorld, false); // Hello World! <div id="some-element-you-clicked"></div>
+document.body.addEventListener('click',debounceHelloWorld, false); 
+// Hello World! <div id="some-element-you-clicked"></div>
 
 ```
 - **Callback** : The function to be executed between each delay.
