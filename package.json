@@ -1,5 +1,5 @@
 {
-  "name": "Volve",
+  "name": "volve",
   "version": "0.0.1",
   "description": "Tiny, Performant Debounce and Throttle Functions.",
   "main": "volve.js",
