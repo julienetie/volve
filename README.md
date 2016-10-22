@@ -5,7 +5,7 @@ Tiny, Performant Debounce and Throttle Functions.
 
 ### Debounce:
 
-`volve.debounce(<callback>,<delay>)'
+`volve.debounce(<callback>,<delay>)`
 
 ```javascript
 import { debounce } from 'volve'
@@ -20,7 +20,7 @@ document.body.addEventListener('click',debounceHelloWorld, false)
 
 ### Throttle:
 
-`volve.throttle(<callback>,<limit>)'
+`volve.throttle(<callback>,<limit>)`
 
 ```javascript
 import { throttle } from 'volve'
@@ -36,7 +36,7 @@ In the two examples above debounce will make the user wait 1000ms until they can
 Throttle will only allow the user trigger a call once within every 1000ms period.
 
 ### Why use these functions?
-- Volve **dosen't use setTimeout or setInterval** which means that they can be more "performant".
+- Volve **dosen't use setTimeout or setInterval** like the majority of debounce and throttle functions. They are tiny and efficent.
 - Volve's debounce is trailing edge. (Leading edge senarios for debounce are usually edge case). 
 - Supports IE8+
 
