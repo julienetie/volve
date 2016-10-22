@@ -1,18 +1,18 @@
-# setAnimationInterval()
-Repeatedly call a function without setInterval, call a function by approximate frames per second
+# Volve
+Tiny, Performant Debounce and Throttle Functions.
 
-- `npm i --save set-animation-interval` = A better performing setInterval **with frames per second**  
-also...
-- `npm i --save set-animation-frame` = [A better performing setTimeout](https://github.com/julienetie/set-animation-frame)  
+- `npm i --save volve`
 
-```javascript 
-// Heads up!
-// Animation timing functions work in enviroments that either render or 
-// simulate the rendering of frames. (Unlike nodejs & dev tools)
-```
 ### Usage:
 ```javascript
-var requestID = setAnimationInterval(<Callback>, <delay>, <useFPS>);
+import { debounce } from 'volve'
+
+const helloWorld = (e) => {console.log('Hello World!', e.target)}
+
+let debounceHelloWorld = debounce(helloWorld, 1000)
+
+document.body.addEventListener(debounceHelloWorld, false); // Hello World! <div id="some-element-you-clicked"></div>
+
 ```
 - **Callback** : The function to be executed between each delay.
 
