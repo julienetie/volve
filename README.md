@@ -4,7 +4,9 @@ Tiny, Performant Debounce and Throttle Functions.
 - `npm i --save volve`
 
 ### Debounce:
+
 `volve.debounce(<callback>,<delay>)'
+
 ```javascript
 import { debounce } from 'volve'
 
@@ -15,8 +17,11 @@ document.body.addEventListener('click',debounceHelloWorld, false)
 // Hello World! <div id="some-element-you-clicked"></div>
 
 ```
+
 ### Throttle:
+
 `volve.throttle(<callback>,<limit>)'
+
 ```javascript
 import { throttle } from 'volve'
 
