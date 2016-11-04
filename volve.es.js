@@ -23,7 +23,7 @@ export default{
      * @param {Number}   - Limit in milliseconds.
      * @return {Function} - The throttle function. 
      */
-    throttle(callback, limit) {
+    throttle: (callback, limit) => {
         var lastCallTime;
         return function(parameters) {
             var currentCallTime = Date.now();
@@ -42,7 +42,7 @@ export default{
      * @param {Number}   - Delay in milliseconds.
      * @return {Function} - The debounce function. 
      */
-    debounce(callback, delay) { 
+    debounce: (callback, delay) => { 
         var lastCallTime;
         return function(parameters) {
             var currentCallTime = Date.now();
