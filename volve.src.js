@@ -1,9 +1,3 @@
-(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-    typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (factory((global.volve = global.volve || {})));
-}(this, (function (exports) { 'use strict';
-
 /**
  *  volve - Tiny, Performant Debounce and Throttle Functions,
  *     License:  MIT
@@ -22,22 +16,23 @@ if (!Date.now) {
     };
 }
 
+
 /**
  * Throttle a function call during repetiton.
  * @param {Function} - Callback function.
  * @param {Number}   - Limit in milliseconds.
  * @return {Function} - The throttle function. 
  */
-function throttle(callback, limit) {
-    var lastCallTime;
-    return function (parameters) {
-        var currentCallTime = Date.now();
-        if (!lastCallTime || currentCallTime > lastCallTime + limit) {
-            callback(parameters);
-            lastCallTime = currentCallTime;
-        }
-    };
-}
+function throttle (callback, limit) {
+        var lastCallTime;
+        return function(parameters) {
+            var currentCallTime = Date.now();
+            if (!lastCallTime || currentCallTime > lastCallTime + limit) {
+                callback(parameters);
+                lastCallTime = currentCallTime;
+            }
+        };
+    }
 
 // !!The two functions are not to be refactored!!
 
@@ -47,9 +42,9 @@ function throttle(callback, limit) {
  * @param {Number}   - Delay in milliseconds.
  * @return {Function} - The debounce function. 
  */
-function debounce(callback, delay) {
+function debounce (callback, delay) {
     var lastCallTime;
-    return function (parameters) {
+    return function(parameters) {
         var currentCallTime = Date.now();
         if (!lastCallTime || currentCallTime - lastCallTime > delay) {
             callback(parameters);
@@ -58,9 +53,4 @@ function debounce(callback, delay) {
     };
 }
 
-exports.throttle = throttle;
-exports.debounce = debounce;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
+export {throttle, debounce}
