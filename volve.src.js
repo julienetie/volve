@@ -5,6 +5,8 @@
  *        github:  https://github.com/julienetie/volve
  *‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
  */
+import setAnimationFrame from 'set-animation-frame';
+ 
 
 /**
  * Date.now polyfill.
@@ -24,9 +26,9 @@ if (!Date.now) {
  * @return {Function} - The throttle function. 
  */
 function throttle (callback, limit) {
-        var lastCallTime;
+        let lastCallTime;
         return function(parameters) {
-            var currentCallTime = Date.now();
+            const currentCallTime = Date.now();
             if (!lastCallTime || currentCallTime > lastCallTime + limit) {
                 callback(parameters);
                 lastCallTime = currentCallTime;
@@ -34,22 +36,41 @@ function throttle (callback, limit) {
         };
     }
 
-// !!The two functions are not to be refactored!!
 
 /**
  * Debounce a function call during repetiton.
- * @param {Function} - Callback function.
- * @param {Number}   - Delay in milliseconds.
+ * @param {Function}  callback - Callback function.
+ * @param {Number}    delay    - Delay in milliseconds.
+ * @param {Boolean}   leading  - Leading or trailing.
  * @return {Function} - The debounce function. 
  */
-function debounce (callback, delay) {
-    var lastCallTime;
-    return function(parameters) {
-        var currentCallTime = Date.now();
-        if (!lastCallTime || currentCallTime - lastCallTime > delay) {
-            callback(parameters);
-            lastCallTime = currentCallTime;
+  function debounce(callback, delay, leading = true) {
+    var debounceRange = 0;
+    var currentTime;
+    var lastCall;
+    var setDelay;
+    var timeoutId;
+    var frame;
+        function run(parameters){
+          callback(parameters);
         }
+    return (parameters) => {
+      if(leading){
+        currentTime = Date.now();
+        if (currentTime > debounceRange) {
+            callback(parameters);
+        }
+        debounceRange = currentTime + delay;
+      }else{
+        /** 
+         * setTimeout is only used with the trailing option.
+         */
+        clearTimeout(id);
+        timeoutId = setTimeout(()=>{
+           cancelAnimationFrame(lastCall)
+           lastCall = requestAnimationFrame(()=>run(parameters))
+        },delay);
+      }
     };
 }
 

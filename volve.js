@@ -5,13 +5,25 @@
 }(this, (function (exports) { 'use strict';
 
 /**
+ *  set-animation-frame - Delay function calls without setTimeout.
+ *     License:  MIT
+ *      Copyright Julien Etienne 2016 All Rights Reserved.
+ *        github:  https://github.com/julienetie/set-animation-frame
+ *‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+ */
+
+/**
+ * @param {Function} callback
+ * @param {Number} delay
+ */
+
+/**
  *  volve - Tiny, Performant Debounce and Throttle Functions,
  *     License:  MIT
  *      Copyright Julien Etienne 2016 All Rights Reserved.
  *        github:  https://github.com/julienetie/volve
  *‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
  */
-
 /**
  * Date.now polyfill.
  * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date/now}
@@ -29,7 +41,7 @@ if (!Date.now) {
  * @return {Function} - The throttle function. 
  */
 function throttle(callback, limit) {
-    var lastCallTime;
+    var lastCallTime = void 0;
     return function (parameters) {
         var currentCallTime = Date.now();
         if (!lastCallTime || currentCallTime > lastCallTime + limit) {
@@ -39,21 +51,43 @@ function throttle(callback, limit) {
     };
 }
 
-// !!The two functions are not to be refactored!!
-
 /**
  * Debounce a function call during repetiton.
- * @param {Function} - Callback function.
- * @param {Number}   - Delay in milliseconds.
+ * @param {Function}  callback - Callback function.
+ * @param {Number}    delay    - Delay in milliseconds.
+ * @param {Boolean}   leading  - Leading or trailing.
  * @return {Function} - The debounce function. 
  */
 function debounce(callback, delay) {
-    var lastCallTime;
+    var leading = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+    var debounceRange = 0;
+    var currentTime;
+    var lastCall;
+    var setDelay;
+    var timeoutId;
+    var frame;
+    function run(parameters) {
+        callback(parameters);
+    }
     return function (parameters) {
-        var currentCallTime = Date.now();
-        if (!lastCallTime || currentCallTime - lastCallTime > delay) {
-            callback(parameters);
-            lastCallTime = currentCallTime;
+        if (leading) {
+            currentTime = Date.now();
+            if (currentTime > debounceRange) {
+                callback(parameters);
+            }
+            debounceRange = currentTime + delay;
+        } else {
+            /** 
+             * setTimeout is only used with the trailing option.
+             */
+            clearTimeout(id);
+            timeoutId = setTimeout(function () {
+                cancelAnimationFrame(lastCall);
+                lastCall = requestAnimationFrame(function () {
+                    return run(parameters);
+                });
+            }, delay);
         }
     };
 }

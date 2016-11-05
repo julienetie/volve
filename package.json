@@ -1,6 +1,6 @@
 {
   "name": "volve",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Tiny, Performant Debounce and Throttle Functions.",
   "main": "volve.js",
   "jsnext:main": "volve.es.js",
@@ -34,5 +34,8 @@
     "rollup": "^0.36.3",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-node-resolve": "^2.0.0"
+  },
+  "dependencies": {
+    "set-animation-frame": "^0.1.1"
   }
 }
