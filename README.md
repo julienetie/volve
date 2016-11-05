@@ -13,7 +13,7 @@ Tiny, Performant Debounce and Throttle Functions.
 
 ### Debounce:
 
-`volve.debounce(<callback>,<delay>,<trail>)`
+`volve.debounce(<callback>,<delay>,<lead>)`
 
 ```javascript
 import { debounce } from 'volve'
@@ -25,7 +25,7 @@ document.body.addEventListener('click',debounceHelloWorld, false)
 // Hello World! <div id="some-element-you-clicked"></div>
 
 ```
-By default debounce will lead with the first function call, if the trail option {Boolean} is enabled, the callback will be fired after the last batch of calls that fall within conjoining delays.
+By default debounce will trail with the first function call, if the lead option {Boolean} is enabled, the callback will be fired after the last batch of calls that fall within conjoining delays.
 
 Consider checkin out: https://css-tricks.com/the-difference-between-throttling-and-debouncing/ for a good explanation.
 
