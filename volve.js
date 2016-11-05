@@ -39,20 +39,12 @@ function throttle(callback, limit) {
     };
 }
 
-/**
- * Debounce a function call during repetiton.
- * @param {Function}  callback - Callback function.
- * @param {Number}    delay    - Delay in milliseconds.
- * @param {Boolean}   trail  - Leading or trailing.
- * @return {Function} - The debounce function. 
- */
 function debounce(callback, delay, trail) {
     var debounceRange = 0;
     var currentTime;
     var lastCall;
     var setDelay;
     var timeoutId;
-    var frame;
 
     var call = function call(parameters) {
         callback(parameters);
@@ -60,17 +52,16 @@ function debounce(callback, delay, trail) {
 
     return function (parameters) {
         if (trail) {
+            console.log('trail');
             /**
              * setTimeout is only used with the trail option.
              */
-            clearTimeout(id);
+            clearTimeout(timeoutId);
             timeoutId = setTimeout(function () {
-                cancelAnimationFrame(lastCall);
-                lastCall = requestAnimationFrame(function () {
-                    return call(parameters);
-                });
+                call(parameters);
             }, delay);
         } else {
+            console.log('lead');
             currentTime = Date.now();
             if (currentTime > debounceRange) {
                 callback(parameters);
