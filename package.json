@@ -1,6 +1,6 @@
 {
   "name": "volve",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Tiny, Performant Debounce and Throttle Functions.",
   "main": "volve.js",
   "jsnext:main": "volve.es.js",
