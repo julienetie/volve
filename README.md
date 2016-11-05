@@ -4,11 +4,12 @@ Tiny, Performant Debounce and Throttle Functions.
 ### Why use these functions?
 - Volve **avoids the use of setTimeout and setInterval** for efficency with the exception of the trail option when using debounce.
 - No clutter.
-- Built in ES6
+- Built with ES6.
 - UMD, CJS and ES6 support.
-- Supports all browsers from IE5+ with the use of [requestFrame](https://github.com/julienetie/request-frame)
+- Supports all browsers from IE5+ with the use of [requestFrame](https://github.com/julienetie/request-frame).
 
 - `npm i --save volve`
+- `yarn add volve --save`
 
 ### Debounce:
 
