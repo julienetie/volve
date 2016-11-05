@@ -76,36 +76,3 @@ function debounce(callback, delay, lead) {
 
 
 export { throttle, debounce }
-
-
-function debounce(callback, delay, trail) {
-    var debounceRange = 0;
-    var currentTime;
-    var lastCall;
-    var setDelay;
-    var timeoutId;
-
-    var call = function call(parameters) {
-        callback(parameters);
-    };
-
-    return function(parameters) {
-        if (trail) {
-            console.log('trail')
-                /**
-                 * setTimeout is only used with the trail option.
-                 */
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(function() {
-                call(parameters);
-            }, delay);
-        } else {
-            console.log('lead')
-            currentTime = Date.now();
-            if (currentTime > debounceRange) {
-                callback(parameters);
-            }
-            debounceRange = currentTime + delay;
-        }
-    };
-}
