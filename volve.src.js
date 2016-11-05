@@ -24,54 +24,56 @@ if (!Date.now) {
  * @param {Number}   - Limit in milliseconds.
  * @return {Function} - The throttle function. 
  */
-function throttle (callback, limit) {
-        let lastCallTime;
-        return function(parameters) {
-            const currentCallTime = Date.now();
-            if (!lastCallTime || currentCallTime > lastCallTime + limit) {
-                callback(parameters);
-                lastCallTime = currentCallTime;
-            }
-        };
-    }
+function throttle(callback, limit) {
+    let lastCallTime;
+    return function(parameters) {
+        const currentCallTime = Date.now();
+        if (!lastCallTime || currentCallTime > lastCallTime + limit) {
+            callback(parameters);
+            lastCallTime = currentCallTime;
+        }
+    };
+}
 
 
 /**
  * Debounce a function call during repetiton.
  * @param {Function}  callback - Callback function.
  * @param {Number}    delay    - Delay in milliseconds.
- * @param {Boolean}   leading  - Leading or trailing.
+ * @param {Boolean}   trail  - Leading or trailing.
  * @return {Function} - The debounce function. 
  */
-  function debounce(callback, delay, leading = true) {
+function debounce(callback, delay, trail) {
     var debounceRange = 0;
     var currentTime;
     var lastCall;
     var setDelay;
     var timeoutId;
     var frame;
-        function run(parameters){
-          callback(parameters);
-        }
+
+    const call = (parameters) => {
+        callback(parameters);
+    }
+
     return (parameters) => {
-      if(leading){
-        currentTime = Date.now();
-        if (currentTime > debounceRange) {
-            callback(parameters);
+        if (trail) {
+            /**
+             * setTimeout is only used with the trail option.
+             */
+            clearTimeout(id);
+            timeoutId = setTimeout(() => {
+                cancelAnimationFrame(lastCall);
+                lastCall = requestAnimationFrame(() => call(parameters));
+            }, delay);
+        } else {
+            currentTime = Date.now();
+            if (currentTime > debounceRange) {
+                callback(parameters);
+            }
+            debounceRange = currentTime + delay;
         }
-        debounceRange = currentTime + delay;
-      }else{
-        /** 
-         * setTimeout is only used with the trailing option.
-         */
-        clearTimeout(id);
-        timeoutId = setTimeout(()=>{
-           cancelAnimationFrame(lastCall)
-           lastCall = requestAnimationFrame(()=>run(parameters))
-        },delay);
-      }
     };
 }
 
 
-export {throttle, debounce}
+export { throttle, debounce }
