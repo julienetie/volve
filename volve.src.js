@@ -5,8 +5,7 @@
  *        github:  https://github.com/julienetie/volve
  *‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
  */
-import setAnimationFrame from 'set-animation-frame';
- 
+
 
 /**
  * Date.now polyfill.
@@ -73,5 +72,6 @@ function throttle (callback, limit) {
       }
     };
 }
+
 
 export {throttle, debounce}

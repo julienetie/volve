@@ -1,23 +1,11 @@
 /**
- *  set-animation-frame - Delay function calls without setTimeout.
- *     License:  MIT
- *      Copyright Julien Etienne 2016 All Rights Reserved.
- *        github:  https://github.com/julienetie/set-animation-frame
- *‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
- */
-
-/**
- * @param {Function} callback
- * @param {Number} delay
- */
-
-/**
  *  volve - Tiny, Performant Debounce and Throttle Functions,
  *     License:  MIT
  *      Copyright Julien Etienne 2016 All Rights Reserved.
  *        github:  https://github.com/julienetie/volve
  *‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
  */
+
 /**
  * Date.now polyfill.
  * {@link https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date/now}
